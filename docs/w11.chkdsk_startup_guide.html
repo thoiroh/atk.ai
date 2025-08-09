@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHKDSK au démarrage - Windows 11</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        .method {
+            background: #ecf0f1;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background: #ffeaa7;
+            padding: 15px;
+            border-left: 4px solid #fdcb6e;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .command {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .step {
+            margin: 10px 0;
+            padding: 5px 0;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="emoji">💻</span>CHKDSK au démarrage - Windows 11</h1>
+        
+        <div class="warning">
+            <strong><span class="emoji">⚠️</span>Important :</strong> Sauvegarde tes données importantes avant de procéder. CHKDSK peut corriger mais aussi supprimer des fichiers corrompus.
+        </div>
+
+        <h2><span class="emoji">🔑</span>Méthode 1 : Via Command Prompt (Admin)</h2>
+        <div class="method">
+            <div class="step"><span class="emoji">1️⃣</span>Ouvre Command Prompt en tant qu'administrateur</div>
+            <div class="step"><span class="emoji">2️⃣</span>Tape la commande suivante :</div>
+            <div class="command">chkdsk C: /f /r</div>
+            <div class="step"><span class="emoji">3️⃣</span>Le système te demandera si tu veux programmer le scan au prochain redémarrage</div>
+            <div class="step"><span class="emoji">4️⃣</span>Tape <strong>Y</strong> puis <strong>Enter</strong></div>
+            <div class="step"><span class="emoji">5️⃣</span>Redémarre ton PC</div>
+        </div>
+
+        <h2><span class="emoji">⚙️</span>Méthode 2 : Via PowerShell (Admin)</h2>
+        <div class="method">
+            <div class="step"><span class="emoji">1️⃣</span>Ouvre Windows PowerShell en tant qu'administrateur</div>
+            <div class="step"><span class="emoji">2️⃣</span>Utilise cette commande :</div>
+            <div class="command">Repair-Volume -DriveLetter C -Scan</div>
+            <div class="step"><span class="emoji">3️⃣</span>Puis pour forcer la réparation :</div>
+            <div class="command">Repair-Volume -DriveLetter C -OfflineScanAndFix</div>
+        </div>
+
+        <h2><span class="emoji">📁</span>Méthode 3 : Via l'Explorateur de fichiers</h2>
+        <div class="method">
+            <div class="step"><span class="emoji">1️⃣</span>Ouvre l'Explorateur de fichiers</div>
+            <div class="step"><span class="emoji">2️⃣</span>Clic droit sur le disque C:</div>
+            <div class="step"><span class="emoji">3️⃣</span>Sélectionne "Properties"</div>
+            <div class="step"><span class="emoji">4️⃣</span>Va dans l'onglet "Tools"</div>
+            <div class="step"><span class="emoji">5️⃣</span>Clique sur "Check" sous Error checking</div>
+            <div class="step"><span class="emoji">6️⃣</span>Sélectionne "Scan and repair drive"</div>
+        </div>
+
+        <h2><span class="emoji">🔧</span>Options CHKDSK importantes</h2>
+        <div class="method">
+            <div class="step"><strong>/f</strong> : Corrige les erreurs</div>
+            <div class="step"><strong>/r</strong> : Localise les secteurs défectueux et récupère les informations lisibles</div>
+            <div class="step"><strong>/x</strong> : Force le démontage du volume si nécessaire</div>
+            <div class="step"><strong>/b</strong> : Réévalue les clusters défectueux (NTFS uniquement)</div>
+        </div>
+
+        <h2><span class="emoji">⏳</span>Processus au démarrage</h2>
+        <div class="method">
+            <div class="step"><span class="emoji">🔄</span>Le scan s'exécutera automatiquement au prochain redémarrage</div>
+            <div class="step"><span class="emoji">⏰</span>Durée : peut prendre plusieurs heures selon la taille du disque</div>
+            <div class="step"><span class="emoji">📊</span>Tu verras une barre de progression et des informations sur l'écran</div>
+            <div class="step"><span class="emoji">✅</span>Ne pas interrompre le processus</div>
+        </div>
+
+        <div class="warning">
+            <strong><span class="emoji">💡</span>Conseil :</strong> Sur ton MacBook Pro avec Boot Camp et ton PC Windows 11, assure-toi d'avoir suffisamment de temps car le processus ne peut pas être interrompu une fois commencé.
+        </div>
+    </div>
+</body>
+</html>

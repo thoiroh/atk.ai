@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide CHKDSK - Command Prompt et PowerShell</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 25px;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .cmd {
+            border-left: 4px solid #e67e22;
+        }
+        .powershell {
+            border-left: 4px solid #3498db;
+        }
+        .important {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        ul {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .method {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guide CHKDSK - Command Prompt et PowerShell</h1>
+        <p><strong>Lecteur cible :</strong> S: (lecteur système externe)</p>
+        <p><strong>Systèmes compatibles :</strong> Windows 11 (MacBook Pro avec Bootcamp et PC)</p>
+
+        <h2>🖥️ Méthodes avec Command Prompt</h2>
+
+        <div class="method">
+            <h3>Méthode 1 - Commande directe</h3>
+            <div class="code-block cmd">chkdsk S: /f /r</div>
+            <ul>
+                <li><code>/f</code> : corrige les erreurs</li>
+                <li><code>/r</code> : localise les secteurs défectueux et récupère les informations lisibles</li>
+            </ul>
+        </div>
+
+        <div class="method">
+            <h3>Méthode 2 - Si le lecteur est en cours d'utilisation</h3>
+            <div class="code-block cmd">chkdsk S: /f /r /x</div>
+            <ul>
+                <li><code>/x</code> : force le démontage du volume si nécessaire</li>
+            </ul>
+        </div>
+
+        <div class="method">
+            <h3>Méthode 3 - Programmer au prochain redémarrage</h3>
+            <p>Si Windows indique que le lecteur est en cours d'utilisation, il proposera de programmer la vérification au prochain redémarrage.</p>
+            <p><strong>Action :</strong> Taper <code>Y</code> pour accepter</p>
+        </div>
+
+        <div class="method">
+            <h3>Méthode 4 - Interface graphique</h3>
+            <ol>
+                <li>Ouvrir File Explorer</li>
+                <li>Clic droit sur le lecteur S:</li>
+                <li>Properties → Tools → Check (sous Error checking)</li>
+            </ol>
+        </div>
+
+        <h2>⚡ Méthodes avec PowerShell</h2>
+
+        <div class="method">
+            <h3>Méthode 1 - Commande chkdsk classique</h3>
+            <div class="code-block powershell">chkdsk S: /f /r</div>
+            <p>Fonctionne exactement comme dans cmd, PowerShell exécute les commandes DOS natives</p>
+        </div>
+
+        <div class="method">
+            <h3>Méthode 2 - Cmdlets PowerShell natifs</h3>
+            <p><strong>Scan seulement :</strong></p>
+            <div class="code-block powershell">Repair-Volume -DriveLetter S -Scan</div>
+            
+            <p><strong>Scan et réparation complète :</strong></p>
+            <div class="code-block powershell">Repair-Volume -DriveLetter S -OfflineScanAndFix</div>
+            <p>Équivalent de <code>/f /r</code></p>
+        </div>
+
+        <div class="method">
+            <h3>Méthode 3 - Cmdlet avancée</h3>
+            <div class="code-block powershell">Get-Volume -DriveLetter S | Repair-Volume -OfflineScanAndFix</div>
+        </div>
+
+        <div class="method">
+            <h3>Méthode 4 - Vérification préalable</h3>
+            <p><strong>Voir l'état du volume :</strong></p>
+            <div class="code-block powershell">Get-Volume -DriveLetter S</div>
+            
+            <p><strong>Puis réparation ciblée :</strong></p>
+            <div class="code-block powershell">Repair-Volume -DriveLetter S -SpotFix</div>
+        </div>
+
+        <div class="important">
+            <h3>🔒 Important - Privilèges Administrateur</h3>
+            <p><strong>Command Prompt :</strong> Clic droit sur "Command Prompt" → "Run as administrator"</p>
+            <p><strong>PowerShell :</strong> Clic droit sur "PowerShell" → "Run as administrator"</p>
+        </div>
+
+        <div class="warning">
+            <h3>💡 Avantages PowerShell</h3>
+            <p>Les cmdlets PowerShell (<code>Repair-Volume</code>) sont plus modernes et donnent souvent de meilleurs retours d'information que la commande chkdsk classique.</p>
+        </div>
+
+        <h2>📋 Récapitulatif des paramètres</h2>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <tr style="background-color: #f8f9fa;">
+                <th style="border: 1px solid #dee2e6; padding: 10px; text-align: left;">Paramètre</th>
+                <th style="border: 1px solid #dee2e6; padding: 10px; text-align: left;">Description</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #dee2e6; padding: 10px;"><code>/f</code></td>
+                <td style="border: 1px solid #dee2e6; padding: 10px;">Corrige les erreurs détectées</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #dee2e6; padding: 10px;"><code>/r</code></td>
+                <td style="border: 1px solid #dee2e6; padding: 10px;">Localise les secteurs défectueux et récupère les informations</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #dee2e6; padding: 10px;"><code>/x</code></td>
+                <td style="border: 1px solid #dee2e6; padding: 10px;">Force le démontage du volume si nécessaire</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

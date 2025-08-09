@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>structure projet php classique</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        h2 {
+            color: #4ecdc4;
+            margin-top: 0;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: #ff6b6b;
+            margin-top: 25px;
+            font-size: 1.4em;
+        }
+
+        .folder-structure {
+            background: #0a0a0a;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.8;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+
+        .folder {
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .file {
+            color: #ff6b6b;
+        }
+
+        .comment {
+            color: #888;
+            font-style: italic;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card h4 {
+            color: #45b7d1;
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            background: rgba(255, 107, 107, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4ecdc4;
+        }
+
+        .best-practices {
+            background: rgba(69, 183, 209, 0.1);
+            border: 1px solid #45b7d1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 structure projet php classique</h1>
+            <p>organisation et bonnes pratiques pour développement moderne</p>
+        </div>
+
+        <div class="section">
+            <h2>📁 structure de base</h2>
+            <div class="folder-structure">
+📁 <span class="folder">mon_projet_php/</span><br>
+├── 📁 <span class="folder">app/</span>                    <span class="comment"># Code applicatif principal</span><br>
+│   ├── 📁 <span class="folder">Controllers/</span>        <span class="comment"># Contrôleurs MVC</span><br>
+│   ├── 📁 <span class="folder">Models/</span>             <span class="comment"># Modèles de données</span><br>
+│   ├── 📁 <span class="folder">Views/</span>              <span class="comment"># Templates/vues</span><br>
+│   ├── 📁 <span class="folder">Services/</span>           <span class="comment"># Logique métier</span><br>
+│   ├── 📁 <span class="folder">Middleware/</span>         <span class="comment"># Middlewares</span><br>
+│   └── 📁 <span class="folder">Config/</span>             <span class="comment"># Configuration app</span><br>
+├── 📁 <span class="folder">public/</span>                 <span class="comment"># Point d'entrée web</span><br>
+│   ├── 📄 <span class="file">index.php</span>             <span class="comment"># Fichier principal</span><br>
+│   ├── 📁 <span class="folder">assets/</span>             <span class="comment"># CSS, JS, images</span><br>
+│   └── 📄 <span class="file">.htaccess</span>             <span class="comment"># Règles Apache</span><br>
+├── 📁 <span class="folder">vendor/</span>                 <span class="comment"># Dépendances Composer</span><br>
+├── 📁 <span class="folder">tests/</span>                  <span class="comment"># Tests unitaires/fonctionnels</span><br>
+├── 📁 <span class="folder">storage/</span>                <span class="comment"># Fichiers temporaires/logs</span><br>
+│   ├── 📁 <span class="folder">logs/</span><br>
+│   ├── 📁 <span class="folder">cache/</span><br>
+│   └── 📁 <span class="folder">uploads/</span><br>
+├── 📁 <span class="folder">database/</span>               <span class="comment"># Migrations/seeders</span><br>
+│   ├── 📁 <span class="folder">migrations/</span><br>
+│   └── 📁 <span class="folder">seeds/</span><br>
+├── 📄 <span class="file">composer.json</span>             <span class="comment"># Dépendances PHP</span><br>
+├── 📄 <span class="file">composer.lock</span><br>
+├── 📄 <span class="file">.env</span>                      <span class="comment"># Variables environnement</span><br>
+├── 📄 <span class="file">.env.example</span><br>
+├── 📄 <span class="file">.gitignore</span><br>
+└── 📄 <span class="file">README.md</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📘 détail des dossiers principaux</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>🎯 app/Controllers/</h4>
+                    <ul>
+                        <li><span class="code">BaseController.php</span> - Contrôleur parent</li>
+                        <li><span class="code">HomeController.php</span> - Page d'accueil</li>
+                        <li><span class="code">UserController.php</span> - Gestion utilisateurs</li>
+                        <li><span class="code">ApiController.php</span> - API REST</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🗃️ app/Models/</h4>
+                    <ul>
+                        <li><span class="code">BaseModel.php</span> - Modèle parent (ORM)</li>
+                        <li><span class="code">User.php</span> - Modèle utilisateur</li>
+                        <li><span class="code">Database.php</span> - Connexion BDD</li>
+                        <li><span class="code">Validator.php</span> - Validation données</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🎨 app/Views/</h4>
+                    <ul>
+                        <li><span class="code">layouts/</span> - Templates principaux</li>
+                        <li><span class="code">pages/</span> - Pages individuelles</li>
+                        <li><span class="code">components/</span> - Composants réutilisables</li>
+                        <li><span class="code">errors/</span> - Pages d'erreur</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>⚙️ app/Config/</h4>
+                    <ul>
+                        <li><span class="code">app.php</span> - Configuration générale</li>
+                        <li><span class="code">database.php</span> - Paramètres BDD</li>
+                        <li><span class="code">routes.php</span> - Définition routes</li>
+                        <li><span class="code">constants.php</span> - Constantes globales</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🔧 app/Services/</h4>
+                    <ul>
+                        <li><span class="code">AuthService.php</span> - Authentification</li>
+                        <li><span class="code">EmailService.php</span> - Envoi emails</li>
+                        <li><span class="code">FileService.php</span> - Gestion fichiers</li>
+                        <li><span class="code">ApiService.php</span> - Appels API externes</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🛡️ app/Middleware/</h4>
+                    <ul>
+                        <li><span class="code">AuthMiddleware.php</span> - Vérification auth</li>
+                        <li><span class="code">CorsMiddleware.php</span> - Gestion CORS</li>
+                        <li><span class="code">RateLimitMiddleware.php</span> - Limitation taux</li>
+                        <li><span class="code">SecurityMiddleware.php</span> - Sécurité</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔒 fichier .env (variables d'environnement)</h2>
+            <div class="folder-structure">
+<span class="comment"># Configuration base de données</span><br>
+DB_HOST=localhost<br>
+DB_NAME=ma_base<br>
+DB_USER=utilisateur<br>
+DB_PASS=motdepasse<br>
+DB_PORT=3306<br>
+<br>
+<span class="comment"># Configuration application</span><br>
+APP_ENV=development<br>
+APP_DEBUG=true<br>
+APP_URL=http://localhost<br>
+APP_KEY=clé_secrète_unique<br>
+<br>
+<span class="comment"># Configuration email</span><br>
+MAIL_HOST=smtp.gmail.com<br>
+MAIL_PORT=587<br>
+MAIL_USER=email@gmail.com<br>
+MAIL_PASS=motdepasse<br>
+<br>
+<span class="comment"># API externes</span><br>
+API_KEY=ma_clé_api<br>
+JWT_SECRET=secret_jwt
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📦 composer.json (dépendances)</h2>
+            <div class="folder-structure">
+{<br>
+    "name": "tom/mon-projet-php",<br>
+    "description": "description de mon projet",<br>
+    "type": "project",<br>
+    "require": {<br>
+        "php": "^8.1",<br>
+        "guzzlehttp/guzzle": "^7.0",     <span class="comment"># Client HTTP</span><br>
+        "monolog/monolog": "^3.0",       <span class="comment"># Logging</span><br>
+        "vlucas/phpdotenv": "^5.0",      <span class="comment"># Variables .env</span><br>
+        "firebase/php-jwt": "^6.0",      <span class="comment"># JWT tokens</span><br>
+        "symfony/console": "^6.0"        <span class="comment"># Commandes CLI</span><br>
+    },<br>
+    "require-dev": {<br>
+        "phpunit/phpunit": "^10.0",      <span class="comment"># Tests</span><br>
+        "psalm/psalm": "^5.0"            <span class="comment"># Analyse statique</span><br>
+    },<br>
+    "autoload": {<br>
+        "psr-4": {<br>
+            "App\\": "app/"<br>
+        }<br>
+    }<br>
+}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 point d'entrée public/index.php</h2>
+            <div class="folder-structure">
+&lt;?php<br>
+<br>
+<span class="comment">// Chargement autoloader Composer</span><br>
+require_once __DIR__ . '/../vendor/autoload.php';<br>
+<br>
+<span class="comment">// Chargement variables environnement</span><br>
+use Dotenv\Dotenv;<br>
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');<br>
+$dotenv->load();<br>
+<br>
+<span class="comment">// Configuration erreurs</span><br>
+if ($_ENV['APP_DEBUG'] === 'true') {<br>
+    error_reporting(E_ALL);<br>
+    ini_set('display_errors', 1);<br>
+}<br>
+<br>
+<span class="comment">// Routage simple</span><br>
+use App\Config\Router;<br>
+use App\Controllers\HomeController;<br>
+<br>
+$router = new Router();<br>
+$router->get('/', [HomeController::class, 'index']);<br>
+$router->run();
+            </div>
+        </div>
+
+        <div class="best-practices">
+            <h3>💡 bonnes pratiques php</h3>
+            <ul>
+                <li><span class="highlight">psr-4</span> - Autoloading avec namespace</li>
+                <li><span class="highlight">composer</span> - Gestion dépendances obligatoire</li>
+                <li><span class="highlight">.env</span> - Variables environnement sécurisées</li>
+                <li><span class="highlight">mvc</span> - Séparation logique/présentation</li>
+                <li><span class="highlight">tests</span> - Tests unitaires avec phpunit</li>
+                <li><span class="highlight">logs</span> - Logging avec monolog</li>
+                <li><span class="highlight">sécurité</span> - Validation/sanitisation données</li>
+                <li><span class="highlight">cache</span> - Optimisation performances</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <h3>⚠️ sécurité importante</h3>
+            <ul>
+                <li>Jamais de code PHP dans <span class="code">public/</span></li>
+                <li>Fichier <span class="code">.env</span> dans <span class="code">.gitignore</span></li>
+                <li>Validation toutes les entrées utilisateur</li>
+                <li>Échappement données avant affichage</li>
+                <li>Requêtes préparées pour BDD</li>
+                <li>HTTPS en production obligatoire</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            📘 structure php moderne - compatible composer + psr standards 📘
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+FROM node:22.12.0-alpine
+
+# 🔧 Dépendances système nécessaires à la compilation
+RUN apk add --no-cache bash git curl make g++ python3 py3-pip
+
+# 📁 Répertoire de travail
+WORKDIR /app
+
+# 📦 Copie ciblée uniquement de package.json (PAS de lock)
+COPY package.json ./
+
+# 🔥 Purge totale si copie forcée
+RUN rm -f package-lock.json && rm -rf node_modules
+
+# 📌 Forcer version TypeScript
+RUN npm install typescript@5.2.2 --save-exact --legacy-peer-deps
+
+# 🧩 Installer toutes les autres dépendances Angular
+RUN npm install --legacy-peer-deps --verbose
+
+# 📁 Enfin, copie du reste du projet
+COPY . .
