@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: atomeek_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: atomeek_datamatrix
+      MYSQL_USER: atomeek_user
+      MYSQL_PASSWORD: atomeek_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - atomeek_network
+
+  # PHP-FPM 8.3
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: atomeek_php
+    restart: unless-stopped
+    volumes:
+      - ./atkai_back:/var/www/html
+    environment:
+      - DB_HOST=mysql
+      - DB_NAME=atomeek_datamatrix
+      - DB_USER=atomeek_user
+      - DB_PASS=atomeek_pass
+      - PHP_ENV=development
+    depends_on:
+      - mysql
+    networks:
+      - atomeek_network
+
+  # Nginx
+  nginx:
+    image: nginx:1.25
+    container_name: atomeek_nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./atkai_back/public:/var/www/html/public
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - atomeek_network
+
+  # Angular Development Server
+  angular:
+    build:
+      context: ./atkai
+      dockerfile: Dockerfile
+    container_name: atomeek_angular
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./atkai:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - atomeek_network
+
+  # PhpMyAdmin (optional)
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: atomeek_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: atomeek_user
+      PMA_PASSWORD: atomeek_pass
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - atomeek_network
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7.2-alpine
+    container_name: atomeek_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - atomeek_network
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  atomeek_network:
+    driver: bridge

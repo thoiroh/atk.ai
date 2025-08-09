@@ -1,86 +1,51 @@
-# docker/php/Dockerfile
-# 🐘 PHP Backend optimisé pour Tom - Version exacte PHP 8.2.12
+FROM php:8.3-fpm
 
-FROM php@sha256:e7deb4ab4261cff0639e69f47d170524ecf459d945c6d5606cc3cb6c62ea2759
-
-# Always update packages to latest security patches
-RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
-
-# 📋 Métadonnées
-LABEL maintainer="Tom"
-LABEL description="PHP 8.2.12 Backend avec extensions pour Angular + MySQL"
-
-# 🔧 Installation des extensions PHP essentielles
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-  # Extensions MySQL
-  default-mysql-client \
-  # Extensions pour images
-  libfreetype6-dev \
-  libjpeg62-turbo-dev \
-  libpng-dev \
-  # Extensions pour compression
-  libzip-dev \
-  zip \
-  unzip \
-  # Extensions pour XML/JSON
-  libxml2-dev \
-  # Git pour Composer
-  git \
-  # Curl pour API calls
-  curl \
-  # Vim pour édition rapide
-  vim \
-  && rm -rf /var/lib/apt/lists/*
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libgd-dev \
+    nano \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
 
-# 🔌 Installation des extensions PHP
+# Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-  && docker-php-ext-install -j$(nproc) \
-  pdo \
-  pdo_mysql \
-  mysqli \
-  gd \
-  zip \
-  xml \
-  curl
+    && docker-php-ext-install -j$(nproc) \
+    pdo_mysql \
+    mbstring \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    zip \
+    intl \
+    opcache \
+    sockets
 
-# 🐛 Xdebug pour debugging (compatible PHP 8.2.12)
-RUN pecl install xdebug-3.2.2 \
-  && docker-php-ext-enable xdebug
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# 📦 Installation de Composer (version stable)
-COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
+# PHP Configuration
+COPY php.ini /usr/local/etc/php/conf.d/custom.ini
 
-# ⚙️ Configuration Apache
-RUN a2enmod rewrite headers
-
-# 📝 Configuration PHP pour développement (optimisée pour PHP 8.2.12)
-RUN echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/docker-php-config.ini \
-  && echo "upload_max_filesize = 100M" >> /usr/local/etc/php/conf.d/docker-php-config.ini \
-  && echo "post_max_size = 100M" >> /usr/local/etc/php/conf.d/docker-php-config.ini \
-  && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/docker-php-config.ini \
-  && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-config.ini \
-  && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-config.ini
-
-# 🐛 Configuration Xdebug (compatible VS Code)
-RUN echo "xdebug.mode=develop,coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-  && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-  && echo "xdebug.client_port=9003" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-  && echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
-# 🌐 Configuration Apache pour Angular (CORS)
-RUN echo '<Directory /var/www/html>' >> /etc/apache2/apache2.conf \
-  && echo '    Header always set Access-Control-Allow-Origin "*"' >> /etc/apache2/apache2.conf \
-  && echo '    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"' >> /etc/apache2/apache2.conf \
-  && echo '    Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"' >> /etc/apache2/apache2.conf \
-  && echo '</Directory>' >> /etc/apache2/apache2.conf
-
-# 📁 Définir le répertoire de travail
+# Set working directory
 WORKDIR /var/www/html
 
-# 🎯 Point d'entrée
-EXPOSE 80
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
-# 🚀 Démarrage automatique de Composer si composer.json existe
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-CMD ["entrypoint.sh"]
+# Expose port
+EXPOSE 9000
+
+# Start PHP-FPM
+CMD ["php-fpm"]
