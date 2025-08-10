@@ -1,6 +1,6 @@
 {
-  "name": "atomeek/datamatrix-backend",
-  "description": "Backend API pour Atomeek DataMatrix",
+  "name": "atk/ai-backend",
+  "description": "Backend API pour ATK AI",
   "type": "project",
   "license": "proprietary",
   "require": {
