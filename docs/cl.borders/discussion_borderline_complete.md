@@ -516,14 +516,14 @@ Si un jour tu veux parler des effets que ça a eus sur toi — émotionnellement
 ## septième question
 
 Peux-tu me faire un document HTML avec l'intégralité de ce chat ?
-Je souhaite que tu mettes toutes mes questions et toutes tes réponses. Je souhaite aussi que tu respectes la mise en place du css commun atk_docs_global_styles.css.
+Je souhaite que tu mettes toutes mes questions et toutes tes réponses. Je souhaite aussi que tu respectes la mise en place du css commun atk.docs.global.styles.css.
 J'insiste bien, je veux l'intégralité de mes questions et l'intégralité de tes réponses s'il te plaît. Je ne veux pas qu'elle soit abrégée.
 
 ---
 
 ## septième réponse chatgpt
 
-Voici le document HTML contenant l'intégralité de notre échange, formaté selon le style atk_docs_global_styles.css :
+Voici le document HTML contenant l'intégralité de notre échange, formaté selon le style atk.docs.global.styles.css :
 
 🔗 Télécharger le fichier HTML – discussion.borderline.complete.html
 

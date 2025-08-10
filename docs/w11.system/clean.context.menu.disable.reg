@@ -1,0 +1,48 @@
+Windows Registry Editor Version 5.00
+
+; ===== Disable selected context menu entries (without touching OneDrive Personal sync) =====
+; Items targeted: 
+; #1 NordVPN Meshnet, #9 Add to Favorites (Pin to Quick access),
+; #11 7‑Zip submenu, #15 Scan with Microsoft Defender, #18–21 WinRAR options.
+
+; --- 1) NordVPN Meshnet (best‑effort: common handler names) ---
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\NordVPN]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\AllFileSystemObjects\shellex\ContextMenuHandlers\NordVPN]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\NordVPN]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\NordVPN Meshnet]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\AllFileSystemObjects\shellex\ContextMenuHandlers\NordVPN Meshnet]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\NordVPN Meshnet]
+"LegacyDisable"=""
+
+; --- 2) "Add to Favorites" (Pin to Quick access) ---
+[HKEY_CLASSES_ROOT\Folder\shell\pintohome]
+"LegacyDisable"=""
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Folder\shell\pintohome]
+"LegacyDisable"=""
+
+; --- 3) 7‑Zip submenu ---
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\7-Zip]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\7-Zip]
+"LegacyDisable"=""
+
+; --- 4) Microsoft Defender "Scan with Microsoft Defender..." ---
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\EPP]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP]
+"LegacyDisable"=""
+
+; --- 5) WinRAR options (covers Ajouter à l’archive…, etc.) ---
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\WinRAR]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\WinRAR]
+"LegacyDisable"=""
+[HKEY_CLASSES_ROOT\AllFileSystemObjects\shellex\ContextMenuHandlers\WinRAR]
+"LegacyDisable"=""

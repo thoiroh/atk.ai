@@ -40,7 +40,7 @@ Point d'entrée unique pour l'injection de préférences durables dans les IA co
 
 ### Fichiers de référence
 
-- `atk_docs_global_styles.css` → feuille de style unique
+- `atk.docs.global.styles.css` → feuille de style unique
 - `llms.md` / `llms-full.md` → standards Angular
 
 ---

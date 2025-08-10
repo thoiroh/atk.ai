@@ -32,7 +32,7 @@
 #### Conventions spécifiques atk
 
 - Respect des conventions de nommage globales (minuscules)
-- Intégration avec `atk_docs_global_styles.css` pour les composants de documentation
+- Intégration avec `atk.docs.global.styles.css` pour les composants de documentation
 - Utilisation du système d'emojis centralisé
 
 ---

@@ -202,10 +202,10 @@ Format pour ajouts futurs :
 
 **Référence CSS obligatoire :**
 
-- **Tous les artifacts HTML** doivent systématiquement référencer le fichier `atk_docs_global_styles.css`
+- **Tous les artifacts HTML** doivent systématiquement référencer le fichier `atk.docs.global.styles.css`
 
 ```html
-<link rel="stylesheet" href="atk_docs_global_styles.css">
+<link rel="stylesheet" href="atk.docs.global.styles.css">
 ```
 
 **Emojis autorisés :**

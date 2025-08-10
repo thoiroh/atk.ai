@@ -90,7 +90,7 @@
 - Pour les artefacts HTML du projet atk, utiliser la feuille de style :
 
   ```html
-  <link rel="stylesheet" href="atk_docs_global_styles.css">
+  <link rel="stylesheet" href="atk.docs.global.styles.css">
   ```
 
 - Structure HTML : respecter celle des documents HTML fournis
@@ -237,7 +237,7 @@ TOUT EN MINUSCULES - Règle absolue et non négociable pour :
 - Structure par niveaux `#`, `##`, `###`
 - Mise en forme : `gras`, `> citations`, `code`
 - Séparateurs `---` pour transitions
-- Artifacts HTML : toujours avec `atk_docs_global_styles.css`
+- Artifacts HTML : toujours avec `atk.docs.global.styles.css`
 
 ---
 
@@ -246,7 +246,7 @@ TOUT EN MINUSCULES - Règle absolue et non négociable pour :
 - Feuille de style obligatoire :
 
 ```html
-<link rel="stylesheet" href="atk_docs_global_styles.css">
+<link rel="stylesheet" href="atk.docs.global.styles.css">
 ```
 
 - Emojis : uniquement ceux autorisés dans `emoji_meanings_list.html`

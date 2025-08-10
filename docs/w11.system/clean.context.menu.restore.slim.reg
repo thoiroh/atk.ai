@@ -1,0 +1,45 @@
+Windows Registry Editor Version 5.00
+
+; ===== Restore ONLY the entries disabled by clean_context_menu_disable_no_onedrive.reg =====
+
+; --- NordVPN Meshnet ---
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\NordVPN]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\AllFileSystemObjects\shellex\ContextMenuHandlers\NordVPN]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\NordVPN]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\NordVPN Meshnet]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\AllFileSystemObjects\shellex\ContextMenuHandlers\NordVPN Meshnet]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\NordVPN Meshnet]
+"LegacyDisable"=-
+
+; --- "Add to Favorites" (Pin to Quick access) ---
+[HKEY_CLASSES_ROOT\Folder\shell\pintohome]
+"LegacyDisable"=-
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Folder\shell\pintohome]
+"LegacyDisable"=-
+
+; --- 7‑Zip submenu ---
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\7-Zip]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\7-Zip]
+"LegacyDisable"=-
+
+; --- Microsoft Defender "Scan with Microsoft Defender..." ---
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\EPP]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP]
+"LegacyDisable"=-
+
+; --- WinRAR options ---
+[HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\WinRAR]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\WinRAR]
+"LegacyDisable"=-
+[HKEY_CLASSES_ROOT\AllFileSystemObjects\shellex\ContextMenuHandlers\WinRAR]
+"LegacyDisable"=-
